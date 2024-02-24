@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Domain.Enumerations
 {
-    internal class Sex
+    public enum Sex
     {
+        Masculine = 1,
+        Feminine = 2
     }
 }

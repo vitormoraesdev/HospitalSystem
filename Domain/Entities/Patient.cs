@@ -1,4 +1,5 @@
 ﻿using Domain.Enumerations;
+using Domain.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,6 @@ namespace Domain.Entities
         public string Name { get; private set; }
         public int Age { get; private set; }
         public Sex PatientSex { get; private set; }
+        public Address AddressPatient { get; private set; }
     }
 }

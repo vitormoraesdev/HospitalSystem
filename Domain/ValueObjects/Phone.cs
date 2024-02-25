@@ -6,21 +6,20 @@ using System.Threading.Tasks;
 
 namespace Domain.ValueObjects
 {
-    public class AppointmentDate : IEquatable<AppointmentDate>
+    public class Phone : IEquatable<Phone>
     {
-        public DateTime DateTime { get;}
+        public string PhoneNumber { get;}
         public override bool Equals(object obj)
         {
-            return Equals(obj as AppointmentDate);
+            return Equals(obj as Phone);
         }
-
-        public bool Equals(AppointmentDate other)
+        public bool Equals(Phone other)
         {
-            return DateTime == other.DateTime;
+            return PhoneNumber == other.PhoneNumber;
         }
         public override int GetHashCode()
         {
-            return HashCode.Combine(DateTime);
+            return HashCode.Combine(PhoneNumber);
         }
     }
 }

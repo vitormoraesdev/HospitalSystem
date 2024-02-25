@@ -24,7 +24,7 @@ namespace Domain.ValueObjects
         public string Number { get;}
         public string Complement { get;}
 
-        public override bool Equals(Object obj)
+        public override bool Equals(object obj)
         {
             return Equals(obj as Address);
         }
@@ -35,6 +35,10 @@ namespace Domain.ValueObjects
                 return false;
             }
             return Cep == other.Cep && State == other.State && City == other.City && Block == other.Block && Number == other.Number && Complement == other.Complement;
+        }
+        public override int GetHashCode() 
+        {
+            return HashCode.Combine(Cep, State, City, Block, Number, Complement);
         }
     }
 }

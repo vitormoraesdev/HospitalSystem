@@ -8,6 +8,11 @@ namespace Domain.ValueObjects
 {
     public class AppointmentDate : IEquatable<AppointmentDate>
     {
+        public AppointmentDate(DateTime dateTime)
+        {
+            DateTime = dateTime;
+        }
+
         public DateTime DateTime { get;}
         public override bool Equals(object obj)
         {

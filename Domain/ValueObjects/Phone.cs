@@ -8,6 +8,11 @@ namespace Domain.ValueObjects
 {
     public class Phone : IEquatable<Phone>
     {
+        public Phone(string phoneNumber)
+        {
+            PhoneNumber = phoneNumber;
+        }
+
         public string PhoneNumber { get;}
         public override bool Equals(object obj)
         {

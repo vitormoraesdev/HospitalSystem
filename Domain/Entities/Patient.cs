@@ -10,6 +10,15 @@ namespace Domain.Entities
 {
     public class Patient
     {
+        public Patient(int id, string name, int age, Sex patientSex, Address addressPatient)
+        {
+            Id = id;
+            Name = name;
+            Age = age;
+            PatientSex = patientSex;
+            AddressPatient = addressPatient;
+        }
+
         public int Id { get; private set; }
         public string Name { get; private set; }
         public int Age { get; private set; }

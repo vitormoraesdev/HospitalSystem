@@ -10,8 +10,8 @@ namespace Application.ApplicationService
 {
     public class AuthenticationService : IAuthenticationService
     {
-        private readonly IUserRepository _userRepository;
-        public AuthenticationService(IUserRepository userRepository) 
+        private readonly UserRepository _userRepository;
+        public AuthenticationService(UserRepository userRepository) 
         {
             _userRepository = userRepository;
         }

@@ -11,9 +11,11 @@ namespace Application.ApplicationService
     public class AuthenticationService : IAuthenticationService
     {
         private readonly UserRepository _userRepository;
-        public AuthenticationService(UserRepository userRepository) 
+        private readonly JwtService _jwtService;
+        public AuthenticationService(UserRepository userRepository, JwtService jwtService) 
         {
             _userRepository = userRepository;
+            _jwtService = jwtService;
         }
 
         public bool VerifyPassword(string password, string hashedPassword)
@@ -27,7 +29,7 @@ namespace Application.ApplicationService
 
             if(user != null && VerifyPassword(password, user.Password)) 
             {
-                string token = GenerateJwtToken(user);
+                string token = _jwtService.GenerateToken(user.Id);
                 return token;
             }
             return null;

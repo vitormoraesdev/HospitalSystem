@@ -19,7 +19,7 @@ namespace Infrastructure.Repository
         }
         public Task<UserRegistration> GetUserByEmailOrCpfAsync(string email, string cpf)
         {
-            return _context.Users.FirstOrDefaultAsync(u => u.Email == email|| u.Cpf == cpf);
+            return _context.UserRegistrations.FirstOrDefaultAsync(u => u.Email == email || u.Cpf == cpf);
         }
     }
 }

@@ -1,7 +1,10 @@
 using Domain.Entities;
 using Infrastructure.Data;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +19,26 @@ builder.Services.AddControllers();
 
 builder.Services.AddDbContext<Context>(options =>
 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+var secretKey = Configuration["Jwt:SecretKey"];
+var key = Encoding.ASCII.GetBytes(secretKey);
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidIssuer = Configuration["Jwt:Issuer"],
+        ValidAudience = Configuration["Jwt:Audience"],
+        ValidateLifetime = true,
+        ClockSkew = TimeSpan.Zero,
+        IssuerSigningKey = new SymmetricSecurityKey(key)
+    };
+});
 
 //CONFIGURAR DEPOIS (É SOBRE O IDENTITY) !!!
 builder.Services.AddIdentity<UserRegistration, IdentityRole>()

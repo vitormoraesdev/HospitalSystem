@@ -11,6 +11,8 @@ namespace Infrastructure.Data
         {
           
         }
+        public DbSet<UserRegistration> UserRegistrations { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
